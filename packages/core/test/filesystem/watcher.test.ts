@@ -29,8 +29,8 @@ const configLayer = Layer.succeed(
 
 const flagsLayer = ConfigProvider.layer(
   ConfigProvider.fromUnknown({
-    OPENCODE_EXPERIMENTAL_FILEWATCHER: "true",
-    OPENCODE_EXPERIMENTAL_DISABLE_FILEWATCHER: "false",
+    OPEN_COAI_EXPERIMENTAL_FILEWATCHER: "true",
+    OPEN_COAI_EXPERIMENTAL_DISABLE_FILEWATCHER: "false",
   }),
 )
 

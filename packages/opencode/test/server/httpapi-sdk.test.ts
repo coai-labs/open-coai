@@ -41,8 +41,8 @@ const it = testEffect(
 )
 
 const original = {
-  OPENCODE_SERVER_PASSWORD: Flag.OPENCODE_SERVER_PASSWORD,
-  OPENCODE_SERVER_USERNAME: Flag.OPENCODE_SERVER_USERNAME,
+  OPEN_COAI_SERVER_PASSWORD: Flag.OPEN_COAI_SERVER_PASSWORD,
+  OPEN_COAI_SERVER_USERNAME: Flag.OPEN_COAI_SERVER_USERNAME,
 }
 
 type ServerPath = "default" | "raw"
@@ -89,8 +89,8 @@ function serverFetch(
   return HttpServer.HttpServer.use((server) =>
     Effect.sync(() => {
       void serverPath
-      Flag.OPENCODE_SERVER_PASSWORD = input?.password
-      Flag.OPENCODE_SERVER_USERNAME = input?.username
+      Flag.OPEN_COAI_SERVER_PASSWORD = input?.password
+      Flag.OPEN_COAI_SERVER_USERNAME = input?.username
       const baseUrl = HttpServer.formatAddress(server.address)
       return Object.assign(
         async (request: RequestInfo | URL, init?: RequestInit) => {
@@ -286,7 +286,7 @@ function writeStandardFiles(dir: string) {
 function writeProjectSkill(dir: string) {
   return FSUtil.Service.use((fs) =>
     fs.writeWithDirs(
-      path.join(dir, ".opencode", "skills", "project-rest-skill", "SKILL.md"),
+      path.join(dir, ".open-coai", "skills", "project-rest-skill", "SKILL.md"),
       `---
 name: project-rest-skill
 description: A project skill visible to REST API prompts.
@@ -329,8 +329,8 @@ function seedMessage(directory: string, sessionID: string) {
 }
 
 afterEach(async () => {
-  Flag.OPENCODE_SERVER_PASSWORD = original.OPENCODE_SERVER_PASSWORD
-  Flag.OPENCODE_SERVER_USERNAME = original.OPENCODE_SERVER_USERNAME
+  Flag.OPEN_COAI_SERVER_PASSWORD = original.OPEN_COAI_SERVER_PASSWORD
+  Flag.OPEN_COAI_SERVER_USERNAME = original.OPEN_COAI_SERVER_USERNAME
   await disposeAllInstances()
   await resetDatabase()
 })

@@ -8,10 +8,10 @@ new sst.cloudflare.x.SolidStart("Teams", {
   path: "packages/enterprise",
   buildCommand: "bun run build:cloudflare",
   environment: {
-    OPENCODE_STORAGE_ADAPTER: "r2",
-    OPENCODE_STORAGE_ACCOUNT_ID: sst.cloudflare.DEFAULT_ACCOUNT_ID,
-    OPENCODE_STORAGE_ACCESS_KEY_ID: SECRET.R2AccessKey.value,
-    OPENCODE_STORAGE_SECRET_ACCESS_KEY: SECRET.R2SecretKey.value,
-    OPENCODE_STORAGE_BUCKET: storage.name,
+    OPEN_COAI_STORAGE_ADAPTER: "r2",
+    OPEN_COAI_STORAGE_ACCOUNT_ID: sst.cloudflare.DEFAULT_ACCOUNT_ID,
+    OPEN_COAI_STORAGE_ACCESS_KEY_ID: SECRET.R2AccessKey.value,
+    OPEN_COAI_STORAGE_SECRET_ACCESS_KEY: SECRET.R2SecretKey.value,
+    OPEN_COAI_STORAGE_BUCKET: storage.name,
   },
 })

@@ -8,38 +8,38 @@ import { resetDatabase } from "../fixture/db"
 import { disposeAllInstances, tmpdir } from "../fixture/fixture"
 
 const original = {
-  OPENCODE_SERVER_PASSWORD: Flag.OPENCODE_SERVER_PASSWORD,
-  OPENCODE_SERVER_USERNAME: Flag.OPENCODE_SERVER_USERNAME,
-  envPassword: process.env.OPENCODE_SERVER_PASSWORD,
-  envUsername: process.env.OPENCODE_SERVER_USERNAME,
+  OPEN_COAI_SERVER_PASSWORD: Flag.OPEN_COAI_SERVER_PASSWORD,
+  OPEN_COAI_SERVER_USERNAME: Flag.OPEN_COAI_SERVER_USERNAME,
+  envPassword: process.env.OPEN_COAI_SERVER_PASSWORD,
+  envUsername: process.env.OPEN_COAI_SERVER_USERNAME,
 }
 const auth = { username: "opencode", password: "listen-secret" }
 const testPty = process.platform === "win32" ? test.skip : test
 
 afterEach(async () => {
-  Flag.OPENCODE_SERVER_PASSWORD = original.OPENCODE_SERVER_PASSWORD
-  Flag.OPENCODE_SERVER_USERNAME = original.OPENCODE_SERVER_USERNAME
-  if (original.envPassword === undefined) delete process.env.OPENCODE_SERVER_PASSWORD
-  else process.env.OPENCODE_SERVER_PASSWORD = original.envPassword
-  if (original.envUsername === undefined) delete process.env.OPENCODE_SERVER_USERNAME
-  else process.env.OPENCODE_SERVER_USERNAME = original.envUsername
+  Flag.OPEN_COAI_SERVER_PASSWORD = original.OPEN_COAI_SERVER_PASSWORD
+  Flag.OPEN_COAI_SERVER_USERNAME = original.OPEN_COAI_SERVER_USERNAME
+  if (original.envPassword === undefined) delete process.env.OPEN_COAI_SERVER_PASSWORD
+  else process.env.OPEN_COAI_SERVER_PASSWORD = original.envPassword
+  if (original.envUsername === undefined) delete process.env.OPEN_COAI_SERVER_USERNAME
+  else process.env.OPEN_COAI_SERVER_USERNAME = original.envUsername
   await disposeAllInstances()
   await resetDatabase()
 })
 
 async function startListener() {
-  Flag.OPENCODE_SERVER_PASSWORD = auth.password
-  Flag.OPENCODE_SERVER_USERNAME = auth.username
-  process.env.OPENCODE_SERVER_PASSWORD = auth.password
-  process.env.OPENCODE_SERVER_USERNAME = auth.username
+  Flag.OPEN_COAI_SERVER_PASSWORD = auth.password
+  Flag.OPEN_COAI_SERVER_USERNAME = auth.username
+  process.env.OPEN_COAI_SERVER_PASSWORD = auth.password
+  process.env.OPEN_COAI_SERVER_USERNAME = auth.username
   return Server.listen({ hostname: "127.0.0.1", port: 0 })
 }
 
 async function startNoAuthListener() {
-  Flag.OPENCODE_SERVER_PASSWORD = undefined
-  Flag.OPENCODE_SERVER_USERNAME = auth.username
-  delete process.env.OPENCODE_SERVER_PASSWORD
-  process.env.OPENCODE_SERVER_USERNAME = auth.username
+  Flag.OPEN_COAI_SERVER_PASSWORD = undefined
+  Flag.OPEN_COAI_SERVER_USERNAME = auth.username
+  delete process.env.OPEN_COAI_SERVER_PASSWORD
+  process.env.OPEN_COAI_SERVER_USERNAME = auth.username
   return Server.listen({ hostname: "127.0.0.1", port: 0 })
 }
 

@@ -6,11 +6,11 @@
 // the original /event race or #27371's invalid-model hang).
 //
 // Configuration flows through opencode's built-in test affordances:
-//   - OPENCODE_CONFIG_CONTENT      : provider config inline, no files to find
-//   - OPENCODE_TEST_HOME           : pins os.homedir() → tmpdir
-//   - OPENCODE_DISABLE_PROJECT_CONFIG : skip walking up for opencode.json
-//   - OPENCODE_PURE                : skip external plugin discovery + install
-//   - OPENCODE_DISABLE_AUTOUPDATE / AUTOCOMPACT / MODELS_FETCH : no background work
+//   - OPEN_COAI_CONFIG_CONTENT      : provider config inline, no files to find
+//   - OPEN_COAI_TEST_HOME           : pins os.homedir() → tmpdir
+//   - OPEN_COAI_DISABLE_PROJECT_CONFIG : skip walking up for opencode.json
+//   - OPEN_COAI_PURE                : skip external plugin discovery + install
+//   - OPEN_COAI_DISABLE_AUTOUPDATE / AUTOCOMPACT / MODELS_FETCH : no background work
 // Plus HOME / XDG_* pointing at the tmpdir for belt-and-suspenders isolation.
 //
 // Today only `opencode.run` is fully wired. The shape supports adding more
@@ -59,19 +59,19 @@ function forkStderrDrain(stream: ReadableStream<Uint8Array>, into: string[]) {
 
 function isolatedEnv(home: string, configJson: string): Record<string, string> {
   return {
-    OPENCODE_TEST_HOME: home,
+    OPEN_COAI_TEST_HOME: home,
     HOME: home,
     XDG_CONFIG_HOME: path.join(home, ".config"),
     XDG_DATA_HOME: path.join(home, ".local/share"),
     XDG_STATE_HOME: path.join(home, ".local/state"),
     XDG_CACHE_HOME: path.join(home, ".cache"),
-    OPENCODE_CONFIG_CONTENT: configJson,
-    OPENCODE_DISABLE_PROJECT_CONFIG: "1",
-    OPENCODE_PURE: "1",
-    OPENCODE_DISABLE_AUTOUPDATE: "1",
-    OPENCODE_DISABLE_AUTOCOMPACT: "1",
-    OPENCODE_DISABLE_MODELS_FETCH: "1",
-    OPENCODE_AUTH_CONTENT: "{}",
+    OPEN_COAI_CONFIG_CONTENT: configJson,
+    OPEN_COAI_DISABLE_PROJECT_CONFIG: "1",
+    OPEN_COAI_PURE: "1",
+    OPEN_COAI_DISABLE_AUTOUPDATE: "1",
+    OPEN_COAI_DISABLE_AUTOCOMPACT: "1",
+    OPEN_COAI_DISABLE_MODELS_FETCH: "1",
+    OPEN_COAI_AUTH_CONTENT: "{}",
   }
 }
 

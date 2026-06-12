@@ -104,14 +104,14 @@ describe("OpencodePlugin", () => {
   )
 
   it.effect("uses configured provider env vars as credentials", () =>
-    withEnv({ OPENCODE_API_KEY: undefined, CUSTOM_OPENCODE_API_KEY: "secret" }, () =>
+    withEnv({ OPENCODE_API_KEY: undefined, CUSTOM_OPEN_COAI_API_KEY: "secret" }, () =>
       Effect.gen(function* () {
         const plugin = yield* PluginV2.Service
         const catalog = yield* Catalog.Service
         yield* plugin.add(OpencodePlugin)
         const transform = yield* catalog.transform()
         yield* transform((catalog) => {
-          const item = provider("opencode", { env: ["CUSTOM_OPENCODE_API_KEY"] })
+          const item = provider("opencode", { env: ["CUSTOM_OPEN_COAI_API_KEY"] })
           catalog.provider.update(item.id, (draft) => {
             draft.env = [...item.env]
           })
